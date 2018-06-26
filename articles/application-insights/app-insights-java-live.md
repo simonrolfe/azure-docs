@@ -1,23 +1,22 @@
----
+﻿---
 title: Application Insights for Java web apps that are already live
 description: Start monitoring a web application that is already running on your server
 services: application-insights
 documentationcenter: java
-author: harelbr
-manager: douge
+author: mrbullwinkle
+manager: carmonm
 
 ms.assetid: 12f3dbb9-915f-4087-87c9-807286030b0b
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.date: 11/10/2016
-ms.author: awills
+ms.author: mbullwin
 
 ---
 # Application Insights for Java web apps that are already live
-
 
 If you have a web application that is already running on your J2EE server, you can start monitoring it with [Application Insights](app-insights-overview.md) without the need to make code changes or recompile your project. With this option, you get information about HTTP requests sent to your server, unhandled exceptions, and performance counters.
 
@@ -129,8 +128,8 @@ And when viewing the properties of a request, you can see the telemetry events a
 [Learn more about metrics.](app-insights-metrics-explorer.md)
 
 ## Next steps
-* [Add telemetry to your web pages](app-insights-web-track-usage.md) to monitor page views and user metrics.
+* [Add telemetry to your web pages](app-insights-javascript.md) to monitor page views and user metrics.
 * [Set up web tests](app-insights-monitor-web-app-availability.md) to make sure your application stays live and responsive.
 * [Capture log traces](app-insights-java-trace-logs.md)
 * [Search events and logs](app-insights-diagnostic-search.md) to help diagnose problems.
-
+* [Configure a Spring Boot initializer app](https://docs.microsoft.com/java/azure/spring-framework/configure-spring-boot-java-applicationinsights)

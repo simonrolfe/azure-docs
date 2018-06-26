@@ -1,74 +1,71 @@
 ---
-title: Azure SQL Database Resource Limits | Microsoft Docs
-description: This page describes some common resource limits for Azure SQL Database.
+title: Azure SQL Database resource limits overview | Microsoft Docs
+description: This page describes some common DTU-based resource limits for single databases in Azure SQL Database.
 services: sql-database
-documentationcenter: na
 author: CarlRabeler
-manager: jhubbard
-editor: ''
-
-ms.assetid: 884e519f-23bb-4b73-a718-00658629646a
+manager: craigg
 ms.service: sql-database
-ms.custom: overview
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: data-management
-ms.date: 12/14/2016
+ms.custom: DBs & servers
+ms.topic: conceptual
+ms.date: 06/20/2018
 ms.author: carlrab
 
 ---
-# Azure SQL Database resource limits
-## Overview
-Azure SQL Database manages the resources available to a database using two different mechanisms: **Resources Governance** and **Enforcement of Limits**. This topic explains these two main areas of resource management.
+# Overview Azure SQL Database resource limits 
 
-## Resource governance
-One of the design goals of the Basic, Standard, and Premium service tiers is for Azure SQL Database to behave as if the database is running on its own machine, isolated from other databases. Resource governance emulates this behavior. If the aggregated resource utilization reaches the maximum available CPU, Memory, Log I/O, and Data I/O resources assigned to the database, resource governance queues queries in execution and assign resources to the queued queries as they free up.
+This article provides an overview of the Azure SQL Database resource limits and provides information regarding what happens when those resource limits are hit or exceeded.
 
-As on a dedicated machine, utilizing all available resources results in a longer execution of currently executing queries, which can result in command timeouts on the client. Applications with aggressive retry logic and applications that execute queries against the database with a high frequency can encounter errors messages when trying to execute new queries when the limit of concurrent requests has been reached.
+## What is the maximum number of servers and databases?
 
-### Recommendations:
-Monitor the resource utilization and the average response times of queries when nearing the maximum utilization of a database. When encountering higher query latencies you generally have three options:
+| Maximum | Value |
+| :--- | :--- |
+| Databases per server | 5000 |
+| Default number of servers per subscription in any region | 20 |
+| Max number of servers per subscription in any region | 200 |
+|||
 
-1. Reduce the number of incoming requests to the database to prevent timeout and the pile up of requests.
-2. Assign a higher performance level to the database.
-3. Optimize queries to reduce the resource utilization of each query. For more information, see the Query Tuning/Hinting section in the Azure SQL Database Performance Guidance article.
-
-## Enforcement of limits
-Resources other than CPU, Memory, Log I/O, and Data I/O are enforced by denying new requests when limits are reached. Clients receive an [error message](sql-database-develop-error-messages.md) depending on the limit that has been reached.
-
-For example, the number of connections to a SQL database as well as the number of concurrent requests that can be processed are restricted. SQL Database allows the number of connections to the database to be greater than the number of concurrent requests to support connection pooling. While the number of connections that are available can easily be controlled by the application, the number of parallel requests is often times harder to estimate and to control. Especially during peak loads when the application either sends too many requests or the database reaches its resource limits and starts piling up worker threads due to longer running queries, errors can be encountered.
-
-## Service tiers and performance levels
-There are service tiers and performance levels for both standalone database and elastic pools.
-
-### Standalone databases
-For a standalone database, the limits of a database are defined by the database service tier and performance level. The following table describes the characteristics of Basic, Standard, and Premium databases at varying performance levels.
-
-[!INCLUDE [SQL DB service tiers table](../../includes/sql-database-service-tiers-table.md)]
-
-### Elastic pools
-[Elastic pools](sql-database-elastic-pool.md) share resources across databases in the pool. The following table describes the characteristics of Basic, Standard, and Premium elastic pools.
-
-[!INCLUDE [SQL DB service tiers table for elastic databases](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
-
-For an expanded definition of each resource listed in the previous tables, see the descriptions in [Service tier capabilities and limits](sql-database-performance-guidance.md#service-tier-capabilities-and-limits). For an overview of service tiers, see [Azure SQL Database Service Tiers and Performance Levels](sql-database-service-tiers.md).
-
-## Other SQL Database limits
-| Area | Limit | Description |
-| --- | --- | --- |
-| Databases using Automated export per subscription |10 |Automated export allows you to create a custom schedule for backing up your SQL databases. The preview of this feature will end on March 1, 2017.  |
-| Database per server |Up to 5000 |Up to 5000 databases are allowed per server on V12 servers. |
-| DTUs per server |45000 |45000 DTUs are available per server on V12 servers for provisioning databases, elastic pools, and data warehouses. |
+> [!NOTE]
+> To obtain more server quota than the default amount, a new support request can be submitted in the Azure portal for the subscription with issue type “Quota”.
 
 > [!IMPORTANT]
-> Azure SQL Database Automated Export is now in preview and will be retired on March 1, 2017. Starting December 1st, 2016, you will no longer be able to configure automated export on any SQL database. All your existing automated export jobs will continue to work until March 1, 2017. After December 1, 2016, you can use [long-term backup retention](sql-database-long-term-retention.md) or [Azure Automation](../automation/automation-intro.md) to archive SQL databases periodically using PowerShell periodically according to a schedule of your choice. For a sample script, you can download the [sample script from Github](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-automation-automated-export). 
->
+> As the number of databases approaches the limit per server, the following can occur:
+> -	Increasing latency in running queries against the master database.  This includes views of resource utilization statistics such as sys.resource_stats.
+> -	Increasing latency in management operations and rendering portal viewpoints that involve enumerating databases in the server.
 
-## Resources
-[Azure Subscription and Service Limits, Quotas, and Constraints](../azure-subscription-service-limits.md)
+## What happens when database resource limits are reached?
 
-[Azure SQL Database Service Tiers and Performance Levels](sql-database-service-tiers.md)
+### Compute (DTUs and eDTUs / vCores)
 
-[Error messages for SQL Database client programs](sql-database-develop-error-messages.md)
+When database compute utilization (measured by DTUs and eDTUs, or vCores) becomes high, query latency increases and can even time out. Under these conditions, queries may be queued by the service and are provided resources for execution as resource become free.
+When encountering high compute utilization, mitigation options include:
 
+- Increasing the performance level of the database or elastic pool to provide the database with more compute resources. See [Scale single database resources](sql-database-single-database-scale.md) and [Scale elastic pool resources](sql-database-elastic-pool-scale.md).
+- Optimizing queries to reduce the resource utilization of each query. For more information, see [Query Tuning/Hinting](sql-database-performance-guidance.md#query-tuning-and-hinting).
+
+### Storage
+
+When database space used reaches the max size limit, database inserts and updates that increase the data size fail and clients receive an [error message](sql-database-develop-error-messages.md). Database SELECTS and DELETES continue to succeed.
+
+When encountering high space utilization, mitigation options include:
+
+- Increasing the max size of the database or elastic pool, or add more storage. See [Scale single database resources](sql-database-single-database-scale.md) and [Scale elastic pool resources](sql-database-elastic-pool-scale.md).
+- If the database is in an elastic pool, then alternatively the database can be moved outside of the pool so that its storage space is not shared with other databases.
+
+### Sessions and workers (requests) 
+
+The maximum number of sessions and workers are determined by the service tier and performance level (DTUs and eDTUs). New requests are rejected when session or worker limits are reached, and clients receive an error message. While the number of connections available can be controlled by the application, the number of concurrent workers is often harder to estimate and control. This is especially true during peak load periods when database resource limits are reached and workers pile up due to longer running queries. 
+
+When encountering high session or worker utilization, mitigation options include:
+- Increasing the service tier or performance level of the database or elastic pool. See [Scale single database resources](sql-database-single-database-scale.md) and [Scale elastic pool resources](sql-database-elastic-pool-scale.md).
+- Optimizing queries to reduce the resource utilization of each query if the cause of increased worker utilization is due to contention for compute resources. For more information, see [Query Tuning/Hinting](sql-database-performance-guidance.md#query-tuning-and-hinting).
+
+When encountering high session or worker utilization, mitigation options include:
+- Increasing the service tier or performance level of the database. See [Scale single database resources](sql-database-single-database-scale.md) and [Scale elastic pool resources](sql-database-elastic-pool-scale.md).
+- Optimizing queries to reduce the resource utilization of each query if the cause of increased worker utilization is due to contention for compute resources. For more information, see [Query Tuning/Hinting](sql-database-performance-guidance.md#query-tuning-and-hinting).
+
+## Next steps
+
+- See [SQL Database FAQ](sql-database-faq.md) for answers to frequently asked questions.
+- For information about general Azure limits, see [Azure subscription and service limits, quotas, and constraints](../azure-subscription-service-limits.md).
+- For information about DTUs and eDTUs, see [DTUs and eDTUs](sql-database-service-tiers.md#what-are-database-transaction-units-dtus).
+- For information about tempdb size limits, see https://docs.microsoft.com/sql/relational-databases/databases/tempdb-database#tempdb-database-in-sql-database.

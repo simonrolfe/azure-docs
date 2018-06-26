@@ -3,19 +3,17 @@ title: How to manage role activation settings | Microsoft Docs
 description: Learn how to change the default settings for privileged identities with the Azure Active Directory Privileged Identity Management extension.
 services: active-directory
 documentationcenter: ''
-author: kgremban
-manager: femila
+author: rolyon
+manager: mtillman
 editor: ''
 
-ms.assetid: f6cbcb6a-8a89-4077-afd8-06c94a64f4aa
 ms.service: active-directory
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 06/30/2016
-ms.author: kgremban
-
+ms.component: protection
+ms.date: 06/06/2017
+ms.author: rolyon
+ms.custom: pim
 ---
 # How to manage role activation settings in Azure AD Privileged Identity Management
 A privileged role administrator can customize Azure AD Privileged Identity Management (PIM) in their organization, including changing the experience for a user who is activating an eligible role assignment.

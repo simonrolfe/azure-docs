@@ -1,19 +1,31 @@
 ---
+title: Azure Power BI Embedded Documentation - Tutorials, API Reference | Microsoft Docs
+description: Learn how to embed Power BI data visualizations and interactive reports into apps. Tutorials, API references, and other documentation.
+services: power-bi-embedded
+author: markingmyname
+manager: kfile
 layout: LandingPage
+ms.assetid:	
+ms.service: power-bi-embedded
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 09/28/2017
+ms.author: maghan
 ---
 # Power BI Embedded Documentation
 
-Power BI Embedded is an Azure service that enables application developers to add interactive Power BI reports into their own applications. Power BI Embedded works with existing applications without needing redesign or changing the way users sign in.
+Learn how to add data visualizations and interactive reports to applications with Power BI Embedded. Tutorials, API references, and other documentation show you how to seamlessly embed Power BI reports and dashboards into apps.
 
 <ul class="panelContent cardsFTitle">
     <li>
-        <a href="/azure/power-bi-embedded/power-bi-embedded-what-is-power-bi-embedded">
+        <a href="/azure/power-bi-embedded/what-is-power-bi-embedded">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/power-bi-embedded.svg" alt="" />
+                            <img src="media/index/power-bi-logo.svg" alt="Power BI logo" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -43,7 +55,7 @@ Power BI Embedded is an Azure service that enables application developers to add
         </a>
     </li>
     <li>
-        <a href="/azure/power-bi-embedded/power-bi-embedded-get-started">
+        <a href="/azure/power-bi-embedded/get-started">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -61,7 +73,7 @@ Power BI Embedded is an Azure service that enables application developers to add
         </a>
     </li>
     <li>
-        <a href="/azure/power-bi-embedded/power-bi-embedded-get-started-sample">
+        <a href="https://powerbi.microsoft.com/documentation/powerbi-developer-embed-sample-app-owns-data/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -71,7 +83,7 @@ Power BI Embedded is an Azure service that enables application developers to add
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get started creating Power BI reports with the sample gallery</h3>
+                        <h3>Get started embedding reports with a sample application.</h3>
                     </div>
                 </div>
             </div>
@@ -89,7 +101,7 @@ Power BI Embedded is an Azure service that enables application developers to add
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Command-Line</h3>
+                        <h3>PowerShell</h3>
                         <p><a href="/powershell/resourcemanager/azurerm.powerbiembedded/v2.3.0/azurerm.powerbiembedded">PowerShell</a></p>
                     </div>
                 </div>
@@ -103,8 +115,9 @@ Power BI Embedded is an Azure service that enables application developers to add
                     <div class="cardText">
                         <h3>Languages</h3>
                         <p><a href="/dotnet/api/microsoft.azure.management.powerbiembedded">.NET</a></p>
-                        <p><a href="https://www.nuget.org/profiles/powerbi">.NET SDK download</a></p>
-                        <p><a href="https://github.com/Microsoft/PowerBI-JavaScript">JavaScript</a></p>
+                        <p><a href="https://www.nuget.org/packages/Microsoft.PowerBI.Api/">.NET SDK download</a></p>
+                        <p><a href="https://microsoft.github.io/PowerBI-JavaScript/">JavaScript</a></p>
+                        <p><a href="https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/">JavaScript SDK download</a></p>
                    </div>
                 </div>
             </div>
@@ -116,19 +129,11 @@ Power BI Embedded is an Azure service that enables application developers to add
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="/rest/api/powerbiembedded/">REST API Reference</a></p>
+                        <p><a href="https://docs.microsoft.com/rest/api/power-bi-embedded/">Azure Resource Manager REST API reference</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/mt147898.aspx">REST API reference</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </li>
 </ul>
-
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/power-bi-embedded.pdf">
-        <div class="img"></div>
-        <div class="text">
-            Download Power BI Embedded Documentation
-        </div>
-    </a>
-</div>

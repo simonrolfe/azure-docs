@@ -2,19 +2,12 @@
 title: Azure SQL Database Azure Case Study - Snelstart | Microsoft Docs
 description: Learn about how SnelStart uses SQL Database to rapidly expanded its business services at a rate of 1,000 new Azure SQL Databases per month
 services: sql-database
-documentationcenter: ''
 author: CarlRabeler
-manager: jhubbard
-editor: ''
-
-ms.assetid: fab506b2-439d-4f1a-bdc5-d1d25c80d267
+manager: craigg
 ms.service: sql-database
-ms.custom: app development case study
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: NA
-ms.date: 09/08/2016
+ms.custom: reference
+ms.topic: conceptual
+ms.date: 04/01/2018
 ms.author: carlrab
 
 ---
@@ -23,7 +16,7 @@ ms.author: carlrab
 
 SnelStart makes popular financial- and business-management software for small- and medium-sized businesses (SMBs) in the Netherlands. Its 55,000 customers are serviced by a staff of 110 employees, including an IT staff of 35. By moving from desktop software to a software-as-a-service (SaaS) offering built on Azure, SnelStart made the most of built-in services, automating management using familiar environment in C#, and optimizing performance and scalability by neither over- or under-provisioning businesses using elastic pools. Using Azure provides SnelStart the fluidity of moving customers between on-premises and the cloud.
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-SQL-Database-Case-Study-SnelStart/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-Case-Study-SnelStart/player]
 > 
 > 
 
@@ -101,7 +94,6 @@ The immediate goal for SnelStart is to keep growing its satisfied customer base.
 
 ## More information
 * To learn more about Azure elastic pools, see [elastic pools](sql-database-elastic-pool.md).
-* To learn more about Web roles and worker roles, see [worker roles](../fundamentals-introduction-to-azure.md#compute).    
 * To learn more about Azure SQL Data Warehouse,see [SQL Data Warehouse](https://azure.microsoft.com/documentation/services/sql-data-warehouse/)
 * To learn more about SnelStart, see [SnelStart](http://www.snelstart.nl).
 
